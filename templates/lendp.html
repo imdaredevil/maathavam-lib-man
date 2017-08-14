@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container page-form">
+    <form id="login-form" action="/give" method="POST">
+        <div class="form-group">
+            <label for="userid">UserID</label>
+            <input type="text" id="uid" class="form-control" name="uid">
+        </div>
+        <div class="form-group">
+            <label for="bookname">BookID</label>
+            <input type="text" id="bkid" class="form-control" name="bkid">
+        </div>
+        <button type="submit" class="btn btn-success">Enter</button>
+    </form>
+</div>
+{% endblock %}

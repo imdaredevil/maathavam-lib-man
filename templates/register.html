@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container page-form">
+    <form id="login-form" action="/auth/register" method="POST">
+        <div class="form-group">
+            <label for="userid">Userid</label>
+            <input type="text" id="uid" class="form-control" name="uid">
+        </div>
+        <div class="form-group">
+            <label for="username">Name</label>
+            <input type="text" id="name" class="form-control" name="name">
+        </div>
+        <div class="form-group">
+            <label for="username">User Name</label>
+            <input type="text" id="uname" class="form-control" name="uname">
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" name="password">
+        </div>
+        <div class="form-group">
+            <label for="phone">phone</label>
+            <input type="text" id="phone" class="form-control" name="phone">
+        </div>
+        <div class="form-group">
+            <label for="passkey">passkey</label>
+            <input type="text" id="passkey" class="form-control" name="passkey">
+        </div>
+        <button type="submit" class="btn btn-success">Sign up</button>
+    </form>
+</div>
+{% endblock %}

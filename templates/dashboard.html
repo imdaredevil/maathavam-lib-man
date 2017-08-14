@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Dashboard <small> Welcome {{session.uname}}</small></h1>
+  <hr>
+  <ul>
+        <li><a href="/post"><font size="5" color="green"> Insert Article</font></a><br></li>
+        <li><a href="/give"><font size="5" color="green"> Lend Book</font></a><br></li>
+        <li><a href="/return"> <font size="5" color="green">Return Book</font></a><br></li>
+        <li><a href="/adduser"> <font size="5" color="green">Add User</a></font><br></li>
+        <li><a href="/addbook"> <font size="5" color="green">Add Book</a></font><br></li>
+      
+  </ul>
+{% endblock %}

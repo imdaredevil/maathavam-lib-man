@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Articles</h1>
+  <ul class="list-group">
+    {% for article in articles %}
+      <li class="list-group-item"> <h3><font color="blue">{{article.title}}</font></h3></li>
+       <ul class="list-group">
+<li class="list-group-item"> {{article.desc}}</li>
+<li class="list-group-item"> {{article.author}}</li>
+       </ul> 
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="container">
+   
+        {% for post in values %}
+            <p>{{ post._id }}</p>
+            <hr>
+        {% endfor %}
+    
+</div>
+{% endblock %}
