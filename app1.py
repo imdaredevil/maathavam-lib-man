@@ -1,10 +1,11 @@
 import codecs, os, pymongo
+from models import msg
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
 from data import Articles
 from functools import wraps
 from pymongo import MongoClient
 import time
-from time import strftime,gmtime
+from time import strftime,gmtime,strptime
 import bcrypt
 app = Flask(__name__)
 
@@ -79,10 +80,10 @@ def register_template():
 		#print existing_user
 		if existing_user == None:
 			hashpass=bcrypt.hashpw(request.form['password'].encode('utf-8'),bcrypt.gensalt())
-			print hashpass,users
+			#print hashpass,users
 			db['users'].insert({'uid':request.form['uid'],'name':request.form['name'],'uname':request.form['uname'],'password':hashpass,'phone':request.form['phone']})
 			session['uname']=request.form['uname']
-			print 'inserted'
+			#print 'inserted'
 			return 'registerd as '+request.form['name']
 			return render_template('login.html')
 	return render_template('home.html',value="Invalid Passkey Contact maadhavam")
@@ -111,7 +112,7 @@ def about():
 	s=[]
 	for i in v:
 		s.append(i)
-	print  s
+	#print  s
 	return render_template('about.html',values=s)
 
 
@@ -125,7 +126,7 @@ def article():
 	return render_template('article.html',articles=l)
 @app.route('/give',methods=['POST','GET','PULL'])
 def lend():
-	print request.method
+	#print request.method
 	if request.method == "GET":
 		return render_template('lendp.html')
 	if request.method == "POST":
@@ -135,7 +136,7 @@ def lend():
 		user = db.user
 		lend = db.lend
 		da = time.time() + 15*24*60*60
-		da = time.gmtime(da)
+		da = time.localtime(da)
 		try:
 			bkid = int(bkid)
 		except ValueError:
@@ -144,7 +145,7 @@ def lend():
 			uid = int(uid)
 		except ValueError:
 			return ("enter valid user id")
-		bo = list(book.find({"bkid":bkid}))
+		bo = list(book.find({"bkid":bkid,"availability":1}))
 		if(bo == []):
 			return ("the book doesn't exist")
 		bo = bo[0]
@@ -175,6 +176,7 @@ def insert_user():
 	except ValueError:
 		return ("enter valid phone number")
 	users['books'] = []
+	users["logmem"] = seesion["uname"]
 	print(users)
 	user.insert_one(users);
 	return render_template("home.html",value="successfully added")
@@ -216,7 +218,30 @@ def return1():
 	lend.remove({"bkid":bkid})
 	book.update({"bkid":bkid},bo)
 	user.update({"uid":u["uid"]},u);
-	return render_template("home.html",value = bo["name"] + " returned")		
+	return render_template("home.html",value = bo["name"] + " returned")
+
+@app.route('/msglist')
+def msgli():
+	lend = db.lend
+	user = db.user
+	today = time.time()
+	q=msg.sms(8072257509,'secret005')
+	defaulters = []
+	lis = lend.find()
+	for li in lis:
+		tempdate=strptime(li["date"],"%d %b %y")
+		tempdate = time.mktime(tempdate)
+		if(today>tempdate):
+			defaulters.append(li)
+			u = user.find_one({"uname":li['username']}) 
+			#print("hello")
+			n=q.send("9486293823","You didnt return the book from maadhavam")
+			q.msgSentToday()
+			if(n == False):
+				return render_template("home.html",value="msg failed")
+	q.logout()
+	return render_template("msg.html",users=defaulters)
+	
 if __name__ == '__main__':
 	app.secret_key = 'secretkey'
 	app.run(debug=True)

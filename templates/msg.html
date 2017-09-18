@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Defaulters</h1>
+  <ul class="list-group">
+    {% for user in users %}
+      <li class="list-group-item"> <h3><font color="blue">{{user.username}}</font></h3></li>
+       <ul class="list-group">
+<li class="list-group-item"> {{user.bookname}}</li>
+<li class="list-group-item"> {{user.date}}</li>
+       </ul> 
+    {% endfor %}
+        <button type="button" class="btn btn-success" onclick="location.href='/dashboard'">back to dashboard</button>
+  </ul>
+{% endblock %}
