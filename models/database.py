@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #to create database and collection
 from pymongo import MongoClient
 import pymongo
@@ -96,3 +97,30 @@ if __name__ == "__main__":
 			
 	
 	
+=======
+__author__ = 'shankar'
+
+import pymongo
+
+
+class Database(object):
+    URI = "mongodb://127.0.0.1:27017"
+    DATABASE = None
+
+    @staticmethod
+    def initialize():
+        client = pymongo.MongoClient(Database.URI)
+        Database.DATABASE = client['library']
+
+    @staticmethod
+    def insert(collection, data):
+        Database.DATABASE[collection].insert(data)
+
+    @staticmethod
+    def find(collection, query):
+        return Database.DATABASE[collection].find(query)
+
+    @staticmethod
+    def find_one(collection, query):
+        return Database.DATABASE[collection].find_one(query)
+>>>>>>> 539166723692c174104c91dda63bda1c37cce855
