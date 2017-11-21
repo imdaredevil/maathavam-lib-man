@@ -11,6 +11,15 @@ name = "pypi"
 
 [packages]
 
+unicodecsv = "*"
+pymongo = "*"
+flask = "*"
+bcrypt = "*"
+datetime = "*"
+uuid = "*"
+parsedatetime = "*"
+requests = "*"
+"bs4" = "*"
 
 
 [requires]
