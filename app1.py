@@ -12,14 +12,16 @@ from time import strftime,gmtime,strptime
 import bcrypt
 app = Flask("maathavam-lib-man")
 
-MONGO_URL='mongodb://mani:mani@ds121014.mlab.com:21014/liibrary'
+MONGO_URL='mongodb://cibi:cibicool@ds147681.mlab.com:47681/mlib'
 print(MONGO_URL)
 client=pymongo.MongoClient(MONGO_URL)
-db=client.library
+#client.admin.authenticate("mani","mani");
+db=client.mlib
+#db.add_user('cibi','cibicool',roles=[{'role':'readwrite','db':MONGO_URL}]);
 # Index
 @app.route('/')
 def index():
-
+	
 	book = db.book
 	user = db.user
 	lend = db.lend
