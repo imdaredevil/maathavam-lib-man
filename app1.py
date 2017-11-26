@@ -43,7 +43,7 @@ def login_template():
 	#print users
 	login_user=users.find_one({'uname':request.form['uname']})
 	if login_user :
-		if bcrypt.hashpw(request.form['password'].encode('utf-8'),login_user['password'].encode('utf-8')) ==login_user['password'].encode('utf-8') :
+		if bcrypt.hashpw(request.form['password'].encode('utf-8'),login_user['password']) ==login_user['password'] :
 			session['uname']=request.form['uname']
 			session['logged_in']=True
 			flash('You are now logged in', 'success')
@@ -100,7 +100,7 @@ def register_template():
 			session['uname']=request.form['uname']
 			#print 'inserted'
 #>>>>>>> 539166723692c174104c91dda63bda1c37cce855
-			return 'registerd as '+request.form['name']
+			 flash('registerd as '+request.form['name'])
 			return render_template('login.html')
 		return render_template('home.html',value="user already registered")
 	return render_template('home.html',value="Invalid Passkey Contact maadhavam")
