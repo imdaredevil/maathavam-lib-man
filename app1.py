@@ -198,7 +198,7 @@ def insert_user():
 	except ValueError:
 		return ("enter valid phone number")
 	users['books'] = []
-	users["logmem"] = seesion["uname"]
+	users["logmem"] = session["uname"]
 	print(users)
 	user.insert_one(users);
 	return render_template("home.html",value="successfully added")
