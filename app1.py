@@ -266,5 +266,6 @@ def msgli():
 
 #>>>>>>> 539166723692c174104c91dda63bda1c37cce855
 if __name__ == '__main__':
-	app.secret_key = 'secretkey'
+	app.secret_key = 'secretkey'	
 	app.run(debug=True)
+
