@@ -11,7 +11,7 @@ from time import strftime,gmtime,strptime
 
 import bcrypt
 app = Flask("maathavam-lib-man")
-
+app.secret_key = 'secretkey'	
 MONGO_URL='mongodb://cibi:cibicool@ds147681.mlab.com:47681/mlib'
 print(MONGO_URL)
 client=pymongo.MongoClient(MONGO_URL)
@@ -268,6 +268,6 @@ def msgli():
 
 #>>>>>>> 539166723692c174104c91dda63bda1c37cce855
 if __name__ == '__main__':
-	app.secret_key = 'shankar'	
+	app.secret_key = 'secretkey'	
 	app.run(debug=True)
 
