@@ -10,7 +10,7 @@ import time
 from time import strftime,gmtime,strptime
 
 import bcrypt
-app = Flask(__name__)
+app = Flask("maathavam-lib-man")
 
 MONGO_URL=os.environ.get('MONGODB_URI')
 client=pymongo.MongoClient(MONGO_URL)

@@ -1,1 +1,1 @@
-web: gunicorn maathavam-lib-man.wsgi 
+web: gunicorn app1
