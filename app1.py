@@ -12,7 +12,8 @@ from time import strftime,gmtime,strptime
 import bcrypt
 app = Flask("maathavam-lib-man")
 
-MONGO_URL=os.environ.get('MONGODB_URI')
+MONGO_URL='mongodb://mani:mani@ds121014.mlab.com:21014/liibrary'
+print(MONGO_URL)
 client=pymongo.MongoClient(MONGO_URL)
 db=client.library
 # Index
