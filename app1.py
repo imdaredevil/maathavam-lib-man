@@ -254,16 +254,23 @@ def msgli():
 		tempdate=strptime(li["date"],"%d %b %y")
 		tempdate = time.mktime(tempdate)
 		if(today>tempdate):
-			defaulters.append(li)
-			u = user.find_one({"uname":li['username']}) 
+			u = user.find_one({"uid":li['uid']}) 
 			#print("hello")
 			if u:
-				n=q.send(u['phone'],"Please return the book taken from maadhavam")
+				n=q.send(u['phone'],"Please return the book" + li["bookname"] + "taken from maadhavam")
+				li['phone'] = u['phone'];
+				print(u);
+				defaulters.append(li);
 				if(n == False):
 					return render_template("home.html",value="msg failed")
 	q.logout()
-	flash("msg sent")
 	return render_template("msg.html",users=defaulters)
+
+@app.route('/booklist')
+def booklist():
+	book = db.book.find();
+	return render_template("booklist.html",books=book)
+
 	
 #=======
 

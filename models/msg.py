@@ -66,7 +66,7 @@ class sms:
 		Sends the message to the given mobile number
 		'''
 
-		if len(msg)>139 or len(mobile_no)!=10:	#checks whether the given message is of length more than 139
+		if len(msg)>139 or len(str(mobile_no))!=10:	#checks whether the given message is of length more than 139
 
 			return False							#or the mobile_no is valid
 
@@ -91,7 +91,7 @@ class sms:
 	def sendLater(self, mobile_no, msg, date, time):				#Function for future SMS feature.
 											#date must be in dd/mm/yyyy format
 											#time must be in 24hr format. For ex: 18:05
-		if len(msg)>139 or len(mobile_no)!=10 or not mobile_no.isdecimal():
+		if len(msg)>139 or len(str(mobile_no))!=10 or not mobile_no.isdecimal():
 			return False
 
 		dateparts = date.split('/')			#These steps to check for valid date and time and formatting

@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Books</h1>
+  <ul class="list-group">
+<table border = 5 px  width=100%>
+<tr>
+<th style= "border:1px solid black;text-align:center" height = 35>  book id  </th>
+<th style= "border:1px solid black;text-align:center" height = 35>  book name  </th>
+<th style= "border:1px solid black;text-align:center" height = 35>  book availability  </th>
+</tr>
+    {% for book in books %}
+	<tr height = 35>
+	<td style= "border:1px solid black;text-align:center">  {{book.bkid}}  </td>
+	<td style= "border:1px solid black;text-align:center">  {{book.name}}  </td>
+	<td style= "border:1px solid black;text-align:center">  {{book.availability}}  </td>
+	</tr>
+	{% endfor %}
+</table>
+<br>
+        <button type="button" class="btn btn-success" onclick="location.href='/dashboard'">back to dashboard</button>
+  </ul>
+{% endblock %}
