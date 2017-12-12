@@ -257,10 +257,12 @@ def msgli():
 			defaulters.append(li)
 			u = user.find_one({"uname":li['username']}) 
 			#print("hello")
-			n=q.send(u['phone'],"Please return the book taken from maadhavam")
-			if(n == False):
-				return render_template("home.html",value="msg failed")
+			if u:
+				n=q.send(u['phone'],"Please return the book taken from maadhavam")
+				if(n == False):
+					return render_template("home.html",value="msg failed")
 	q.logout()
+	flash("msg sent")
 	return render_template("msg.html",users=defaulters)
 	
 #=======
