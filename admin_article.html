@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body %}
+<br>
+{% if curr.level == '1' or curr.level == '2' %}
+<h1 class="heading">Add/Edit user</h1>
+<form style="margin-left: 2.5%;margin-right: 2.5%" action="/articleedit" method="POST">
+  <div class="form-group">
+    <input type="number" class="form-control" id="aid" placeholder="aid" name="aid" {% if edituser %}value="{{edituser.uid}}"{% endif %}>
+  </div>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="filech" name="filech">
+    <label class="form-check-label" for="filech">Edit File?</label>
+  </div>
+  <div class="form-group">
+    <label for="content">Content-Doc</label>
+    <input type="file" class="form-control-file" id="content" name="content">
+  </div>
+ <center> <button type="submit" class="btn btn-primary">Submit</button> </center>
+</form>
+<br>
+{% endif %}
+{% endblock %}
